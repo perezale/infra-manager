@@ -1,9 +1,10 @@
 import { Body, Controller, Param, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { InstanceStateChange } from 'aws-sdk/clients/ec2';
 import { Ec2LaunchAction, Ec2LaunchDto } from './dto/LaunchDto';
 import { LaunchService } from './launch.service';
 
+@ApiBearerAuth()
 @ApiTags('ec2')
 @Controller('ec2/instances')
 export class LaunchController {

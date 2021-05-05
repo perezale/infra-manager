@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AwsSdkModule } from 'nest-aws-sdk';
 import { SharedIniFileCredentials } from 'aws-sdk';
 import { Ec2Module } from './ec2/ec2.module';
+import { KeycloakModule } from './keycloak/keycloak.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { Ec2Module } from './ec2/ec2.module';
         }),
       },
     }),
+    KeycloakModule,
   ],
   controllers: [AppController],
   providers: [AppService],

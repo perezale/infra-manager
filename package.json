@@ -28,6 +28,7 @@
     "@nestjs/swagger": "^4.8.0",
     "aws-sdk": "^2.888.0",
     "nest-aws-sdk": "^1.1.1",
+    "nest-keycloak-connect": "^1.5.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
