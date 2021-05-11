@@ -1,0 +1,27 @@
+service: infra-manager
+
+frameworkVersion: '2'
+
+useDotenv: true
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-west-2'}
+  apiGateway:
+    shouldStartNameWithService: true
+  environment:
+    NODE_ENV: ${env:NODE_ENV}
+  lambdaHashingVersion: 20201221
+
+functions:
+  app:
+    handler: dist/serverless.handler
+    events:
+      - http:
+          method: any
+          path: /{any+}
