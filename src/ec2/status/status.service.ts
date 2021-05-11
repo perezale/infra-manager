@@ -1,7 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { EC2 } from 'aws-sdk';
 import { InstanceState, Instance } from 'aws-sdk/clients/ec2';
 import { InjectAwsService } from 'nest-aws-sdk';
+import { PermissionService } from '../permission/permission.service';
 import { InstanceDetailDto } from './dto/InstanceDetailDto';
 
 @Injectable()
@@ -11,6 +12,7 @@ export class StatusService {
 
     constructor (
         @InjectAwsService(EC2) private readonly ec2: EC2,
+        private  permissionService: PermissionService,
     ) {}
 
     async getAll() : Promise<InstanceDetailDto[]> {
@@ -55,6 +57,14 @@ export class StatusService {
         ).reduce(instance => instance);
         
         return instance.State;
+    }
+
+    async getByUser(email:string){
+        let instances = this.getAll();
+        let userPermissions = this.permissionService.getByUser(email);
+        return (await instances).filter(instance => {
+            return userPermissions.instances.indexOf(instance.instanceId) >= 0;
+        });
     }
 
 }

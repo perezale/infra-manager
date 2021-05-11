@@ -10,11 +10,13 @@ import { APP_GUARD } from '@nestjs/core';
 @Module({
   imports: [
     KeycloakConnectModule.register({
-      authServerUrl: 'http://kc.dataviaapp.com/auth',
+      authServerUrl: 'https://kc.dataviaapp.com/auth',
       realm: 'Datavia',
       clientId: 'infra-api',
       secret: '01edb07e-9c4a-4704-a826-1442156506af',
+      
       // Secret key of the client taken from keycloak server
+      logLevels: ['warn' ]
     }),
   ],
   providers: [
@@ -28,6 +30,7 @@ import { APP_GUARD } from '@nestjs/core';
       provide: APP_GUARD,
       useClass: AuthGuard,
     },
+    
     // This adds a global level resource guard, which is permissive.
     // Only controllers annotated with @Resource and 
     // methods with @Scopes
@@ -45,6 +48,7 @@ import { APP_GUARD } from '@nestjs/core';
       provide: APP_GUARD,
       useClass: RoleGuard,
     },
+    
   ]
 })
 export class KeycloakModule {}

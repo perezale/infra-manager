@@ -20,6 +20,7 @@ import { KeycloakModule } from './keycloak/keycloak.module';
       },
     }),
     KeycloakModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],
