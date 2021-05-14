@@ -14,9 +14,9 @@ import { KeycloakModule } from './keycloak/keycloak.module';
     AwsSdkModule.forRoot({
       defaultServiceOptions: {
         region: 'us-west-2',
-        credentials: new SharedIniFileCredentials({
+        /*credentials: new SharedIniFileCredentials({
           profile: 'default',
-        }),
+        }),*/
       },
     }),
     KeycloakModule,
