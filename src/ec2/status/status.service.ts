@@ -59,7 +59,7 @@ export class StatusService {
         return instance.State;
     }
 
-    async getByUser(email:string){
+    async getAllByUser(email:string){
         let instances = this.getAll();
         let userPermissions = this.permissionService.getByUser(email);
         return (await instances).filter(instance => {
