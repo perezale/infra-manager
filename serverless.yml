@@ -16,6 +16,8 @@ provider:
     shouldStartNameWithService: true
   environment:
     NODE_ENV: ${env:NODE_ENV}
+    AWS_ACCESS_KEY_ID: ${env:AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${env:AWS_SECRET_ACCESS_KEY}
   lambdaHashingVersion: 20201221
 
 functions:
